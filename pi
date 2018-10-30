@@ -1,0 +1,38 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+//给定精度需要特殊的数据结构，不能在用double了
+int main()
+{
+	double pi = 0;
+	double piA = 0;
+	double piB = 1;
+	int i = 1;
+	while (abs(piA - piB )>= 1e-8)
+	{
+		if (i % 2 != 0)
+		{
+			piA = piB - 1 / ((double)(i * 2 + 1));
+			double temp = piA;
+			piA = piB;
+			piB = temp;
+
+		}
+		else
+		{
+			piA = piB + 1 / ((double)(i * 2 + 1));
+			double temp = piA;
+			piA = piB;
+			piB = temp;
+		}
+		i++;
+	}
+	pi = 4 * piA;
+	printf("---%lf----\n", pi);
+	double s = 3.2348364746382;
+	printf("%lf", s);
+
+	system("pause");
+	return 0;
+}
