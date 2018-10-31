@@ -1,0 +1,24 @@
+最近对问题要求在一个包含n个点的集合中找出距离最近的两个点。简单起见，找出最近的一对即可。
+蛮力法解决：
+#include <iostream>
+int ClosestPoints(int x[], int y[], int n)
+{
+	int index1 = 0, index2 = 0;
+
+	int d, minDist = 1000;
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = i + 1;j < n;j++)
+		{
+			d = (x[i] - x[j])*(x[i] - x[j]) + (y[i] - y[j])*(y[i] - y[j];
+			if (d < minDist)
+			{
+				minDist = d;
+				index1 = i;
+				index2 = j;
+			}
+
+		}
+	}
+	std::cout << "最近的点对是：" << index1 << "和" << index2 << std::endl;
+}
