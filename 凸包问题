@@ -4,3 +4,47 @@
 
 应用实例：基于眼睛的粗定位是将人脸区域送入分类器进行的人脸检测方法，该方法能够正确检测0~360度旋转人脸图像。粗定位方法是基于彩色图像的定位方法，首先
 将皮肤部分提取出来，然后使用凸包填充算法，将大部分皮肤部分填充为凸包的形状，这样，可以肯定再填充后的区域，必定包含眼睛部分。
+
+问题：凸包问题是为平面上具有n个点的集合S构造最小的凸边形。
+想法：集合S中经过两个两个点pi和pj的线段Lij,如果该集合中的其他点都位于Lij的同一边（假设不存在三点同线），则线段Lij是该集合凸包边界的一部分。
+在平面上，经过两个点pi(xi,yi)和pj(xj,yj)的直线：
+                Ax+By+C=0        A=yi-yj  B=xj-xi   C=xiyj-xjyi
+                
+这条直线把平面分成两个半平面，其中一个半平面满足Ax+By+C>0，另外一个半平面满足Ax+By+C<0。可以基于此解决凸包问题，但效率低。
+O(n^3)
+#include <iostream>
+using namespace std;
+
+void ConvexHull(int x[], int y[], int n)
+{
+	int i, j, k, sign1, sign2;
+	int A, B, C;
+	for (i = 0;i < n - 1;i++)
+	{
+		for (j = i + 1;j < n;j++)
+		{
+			sign1 = 0;
+			sign2 = 0;
+			A = y[i] - y[j];
+			B = x[j] - x[i];
+			C = x[i] * y[j] - x[j] * y[i];
+
+			for ( k = 0; k < n; k++)
+			{
+				if (k != i && k != j)
+				{
+					if (A*x[k] + B*y[k] + C > 0)
+						sign1 = 1;
+					else
+						sign2 = 1;
+					if (sign1 == sign2)
+						break;
+				}
+			}
+			if (k == n)
+				cout << "(" << i << "," << j << ")" << endl;
+		}
+	}
+
+}
+
