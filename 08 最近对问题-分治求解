@@ -8,4 +8,4 @@
 
 下面讨论情况c。为了将平面点集S分割为点的个数大致相同的两个子集S1和S2，选取垂直线x=m来作为分割线，其中，m为S中各点x坐标的中位数。由此将S分割为S1={p∈S|xp<=m}，S2={q∈S|xq>m}。递归的在S1和S2上求解最近对问题，分别得到S1中最近对问题
  
-![Aaron Swartz](https://raw.githubusercontent.com/plutoNJU/recursion/master/res/dcb2abe85d1668caf7a90f154b4fc43.jpg)
+![Alt text](https://raw.githubusercontent.com/plutoNJU/recursion/master/res/dcb2abe85d1668caf7a90f154b4fc43.jpg)
